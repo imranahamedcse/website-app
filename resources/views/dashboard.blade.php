@@ -36,7 +36,7 @@
                 window.location.href = '/login';
             }
 
-            $('#logout-btn').click(async function() {
+            $(document).on('click', '#logout-btn', async function() {
                 const res = await fetch("/api/logout", {
                     method: "POST",
                     headers: {
@@ -54,7 +54,6 @@
                 }
             });
         });
-
 
         async function verifyToken(token) {
             const response = await fetch("/api/user", {

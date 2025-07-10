@@ -56,7 +56,7 @@
                 verifyToken(token);
             }
 
-            $('#login-form').submit(async function(e) {
+            $(document).on('submit', '#login-form', async function(e) {
                 e.preventDefault();
                 const email = $('#email').val();
                 const password = $('#password').val();
@@ -77,12 +77,12 @@
                 if (response.ok) {
                     localStorage.setItem('access_token', data.token);
 
-                    const dash = await fetch("/api/user", {
+                    const res = await fetch("/api/user", {
                         headers: {
                             "Authorization": "Bearer " + data.token,
                         }
                     });
-                    if (dash.ok) {
+                    if (res.ok) {
                         toastr.success('Login successfully.');
 
                         setTimeout(function() {
