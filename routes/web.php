@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\EmailToken;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
@@ -15,7 +16,7 @@ Route::get('/dashboard', function () {
 });
 
 
-Route::get('/sso-initiate', function () {
-    $token = ''; // Get Token
-    return response()->json(['token' => $token]);
+Route::get('/sso-initiate/{email}', function ($email) {
+    $result = EmailToken::where('email', $email)->first();
+    return response()->json(['token' => $result->token]);
 })->middleware('web');

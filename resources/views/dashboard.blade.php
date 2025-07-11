@@ -46,6 +46,7 @@
                     }
                 });
                 if (res.ok) {
+                    localStorage.removeItem('access_token');
                     toastr.success('Logout successfully.');
 
                     setTimeout(function() {

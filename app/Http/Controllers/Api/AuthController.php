@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\EmailToken;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -23,7 +24,10 @@ class AuthController extends Controller
         $user = Auth::user();
         $token = $user->createToken('SSO Token')->accessToken;
 
-        // Set token
+        EmailToken::updateOrCreate(
+            ['email' => $user->email],
+            ['token' => $token]
+        );
 
         return response()->json([
             'token' => $token,
