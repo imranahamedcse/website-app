@@ -52,6 +52,9 @@
                     setTimeout(function() {
                         window.location.href = '/login';
                     }, 1500);
+                } else if (res.status == 401) {
+                    localStorage.removeItem('access_token');
+                    window.location.href = '/login';
                 }
             });
         });
@@ -63,6 +66,9 @@
                 }
             });
             if (!response.ok) {
+                window.location.href = '/login';
+            } else if (response.status == 401) {
+                localStorage.removeItem('access_token');
                 window.location.href = '/login';
             }
         }

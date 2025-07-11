@@ -41,6 +41,11 @@
                             Log in
                         </button>
                     </div>
+
+                    <div class="text-center p-4">
+                        <p>Email: admin@example.com</p>
+                        <p>Password: password</p>
+                    </div>
                 </form>
             </div>
         </div>
